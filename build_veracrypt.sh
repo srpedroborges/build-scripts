@@ -19,7 +19,8 @@
 
 
 # dependencies
-sudo apt install yasm libgtk-3-dev make g++ gcc libfuse-dev --no-install-recommends
+#sudo apt install yasm libgtk-3-dev make g++ gcc libfuse-dev --no-install-recommends
+sudo apt install yasm pkg-config make g++ gcc libfuse-dev --no-install-recommends
 
 DIR="/home/pborges/build/VeraCrypt"
 
