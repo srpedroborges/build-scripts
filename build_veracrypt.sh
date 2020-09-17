@@ -1,5 +1,11 @@
 #!/bin/bash
 
+###############################################################
+#
+# Build VeraCrypt cli (no GUI) on Debian 10 / Ubuntu 20.04
+# with minimal dependencies.
+#
+###############################################################
 
 # Reference
 # https://github.com/veracrypt/VeraCrypt
@@ -8,7 +14,7 @@
 # https://www.configserverfirewall.com/ubuntu-linux/mount-veracrypt-volume/
 
 # CLI Usage
-# Mount Volume
+# Mount File Volume
 # sudo veracrypt -t ~/Documents/<veracrypt_volume> /mnt/<directory>
 #
 # List Mounted Volumes
@@ -16,13 +22,14 @@
 #
 # Unmount Volume
 # veracrypt -t -d /mnt/<directory>
-
+#
+# Create File Volume
+# veracrypt -t -c ~/path/to/file
 
 # dependencies
-#sudo apt install yasm libgtk-3-dev make g++ gcc libfuse-dev --no-install-recommends
 sudo apt install yasm pkg-config make g++ gcc libfuse-dev --no-install-recommends
 
-DIR="/home/pborges/build/VeraCrypt"
+DIR="~/build/VeraCrypt"
 
 [ ! -d $DIR ] && mkdir -p $DIR
 
