@@ -29,7 +29,7 @@
 # dependencies
 sudo apt install yasm pkg-config make g++ gcc libfuse-dev --no-install-recommends
 
-DIR="~/build/VeraCrypt"
+DIR="/home/pborges/build/VeraCrypt"
 
 [ ! -d $DIR ] && mkdir -p $DIR
 
@@ -57,3 +57,7 @@ make NOGUI=1 WXSTATIC=1 WX_ROOT=$DIR/wxWidgets/ wxbuild
 make NOGUI=1 WXSTATIC=1
 printf "> Build complete!\n"
 printf "> The 'veracrypt' binary should be under '$DIR/VeraCrypt/src/Main/'\n"
+
+[ -f $DIR/VeraCrypt/src/Main/veracrypt ] && printf "> Copying the binary to /usr/local/bin\n" && sudo cp $DIR/VeraCrypt/src/Main/veracrypt /usr/local/bin/veracrypt
+
+
