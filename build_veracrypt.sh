@@ -23,7 +23,7 @@ sudo apt install yasm libgtk-3-dev make g++ gcc libfuse-dev --no-install-recomme
 
 DIR="/home/pborges/build/VeraCrypt"
 
-[ ! -d $DIR ] && mkdir $DIR
+[ ! -d $DIR ] && mkdir -p $DIR
 
 if [ -d "$DIR/VeraCrypt" ]; then
     cd "$DIR/VeraCrypt"
