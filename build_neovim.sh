@@ -30,4 +30,4 @@ cd $DIR/$WORKFOLDER
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 printf "> Run ':checkhealth' inside nvim to check status\n"
-printf "> Complete!"
+printf "> Complete!\n"
