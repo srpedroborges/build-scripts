@@ -31,8 +31,9 @@ cd $DIR/$WORKFOLDER
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 printf "> Setting up default options\n"
+VIMRC="/home/$USER/.config/nvim/init.vim"
 mkdir -p /home/$USER/.config/nvim/
-echo "set number" > /home/$USER/.config/nvim/vimrc
-echo "set relativenumber" >> /home/$USER/.config/nvim/vimrc
+echo "set number" > $VIMRC
+echo "set relativenumber" >> $VIMRC
 printf "> Run ':checkhealth' inside nvim to check status\n"
 printf "> Complete!\n"
