@@ -10,7 +10,7 @@
 
 # dependencies
 # xclip -> for clipboard functionality 
-sudo apt install make gcc libtool libtool-bin gettext xclip --no-install-recommends
+sudo apt install m4 automake unzip make gcc g++ pkg-config cmake libtool libtool-bin gettext xclip --no-install-recommends
 
 DIR="/home/pborges/build/"
 WORKFOLDER="neovim"
@@ -26,7 +26,7 @@ else
     git clone https://github.com/neovim/neovim.git
 fi
 printf "> Building and installing\n"
-sudo make uninstall
+cd $DIR/$WORKFOLDER
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 printf "> Run ':checkhealth' inside nvim to check status\n"
