@@ -135,6 +135,15 @@ if [ ! -f $VIMRC ]; then
     fi
 
     echo "$string" >> $VIMRC
+
+    # install dependencies for https://github.com/neoclide/coc.nvim
+    
+    printf "> Input 'y' to install node LTS\n"
+    curl -sL install-node.now.sh/lts | sudo bash
+    
+    printf "> ----------------------------------------------\n"
+    printf "> Run inside nvim: :CocInstall coc-rust-analyzer\n"
+    printf "> ----------------------------------------------\n"
 fi
 
 printf "> Run ':checkhealth' inside nvim to check status\n"
