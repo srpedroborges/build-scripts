@@ -10,7 +10,7 @@
 
 # dependencies
 # xclip -> for clipboard functionality 
-sudo apt install m4 automake unzip make gcc g++ pkg-config cmake libtool libtool-bin gettext xclip --no-install-recommends
+sudo apt install git m4 automake unzip make gcc g++ pkg-config cmake libtool libtool-bin gettext xclip --no-install-recommends
 
 USER="pborges"
 DIR="/home/$USER/build/"
@@ -69,15 +69,16 @@ if [ ! -f $VIMRC ]; then
         string+='" https://github.com/junegunn/vim-plug'
         string+=$'\n'
         string+=$'\n'
-        string+='" Download the plug.vim file and put it into ~/.config/nvim/plugged (create'
+        string+='" Install vim-plug if not found'
         string+=$'\n'
-        string+='" folder)'
+        string+="if empty(glob('~/.config/nvim/autoload/plug.vim'))"
         string+=$'\n'
-        string+='" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \'
+        string+='       silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs'
         string+=$'\n'
-        string+='" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        string+='       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
         string+=$'\n'
-        string+='" Reload .vimrc and run :PlugInstall to install the plugins below'
+        string+='endif'
+        string+=$'\n'
         string+=$'\n'
         string+="call plug#begin('~/.config/nvim/plugged')"
         string+=$'\n'
@@ -102,23 +103,35 @@ if [ ! -f $VIMRC ]; then
         string+="call plug#end()"
         string+=$'\n'
         string+=$'\n'
-        string+='" https://github.com/vim-syntastic/syntastic'
+	string+='" Run PlugInstall if there are missing plugins"'
         string+=$'\n'
-        string+='set statusline+=%#warningmsg#'
+	string+="if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))"
         string+=$'\n'
-        string+='set statusline+=%{SyntasticStatuslineFlag()}'
+	string+='       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC'
         string+=$'\n'
-        string+='set statusline+=%*'
+	string+='endif'
+	string+=$'\n'
+	string+=$'\n'
+	string+="if glob('~/.config/nvim/plugged/syntastic')"
+	string+=$'\n'
+        string+='       " https://github.com/vim-syntastic/syntastic'
+        string+=$'\n'
+        string+='	set statusline+=%#warningmsg#'
+        string+=$'\n'
+        string+='       set statusline+=%{SyntasticStatuslineFlag()}'
+        string+=$'\n'
+        string+='       set statusline+=%*'
         string+=$'\n'
         string+=$'\n'
-        string+='let g:syntastic_always_populate_loc_list = 1'
+        string+='       let g:syntastic_always_populate_loc_list = 1'
         string+=$'\n'
-        string+='let g:syntastic_auto_loc_list = 1'
+        string+='       let g:syntastic_auto_loc_list = 1'
         string+=$'\n'
-        string+='let g:syntastic_check_on_open = 1'
+        string+='       let g:syntastic_check_on_open = 1'
         string+=$'\n'
-        string+='let g:syntastic_check_on_wq = 0'
+        string+='       let g:syntastic_check_on_wq = 0'
         string+=$'\n'
+        string+='endif'
     fi
 
     echo "$string" >> $VIMRC
