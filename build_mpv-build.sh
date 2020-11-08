@@ -9,8 +9,12 @@
 
 #Current issue: doesnt open youtube videos.
 
+WAYLAND_SUPPORT=false
+
 # dependencies
-sudo apt-get install libxkbcommon-dev autoconf autogen pkg-config libtool libfreetype6-dev libfribidi-dev fontconfig libfontconfig1-dev yasm xorg-dev libgnutls28-dev libluajit-5.1-dev libva-dev libegl-dev libpulse-dev
+sudo apt-get install git libxkbcommon-dev autoconf autogen pkg-config libtool libfreetype6-dev libfribidi-dev fontconfig libfontconfig1-dev yasm xorg-dev libgnutls28-dev libluajit-5.1-dev libva-dev libegl-dev libpulse-dev libharfbuzz-dev
+
+# libharfbuzz-dev -> dependency for ubuntu 20.10
 
 DIR="/home/pborges/build/mpv-build"
 
@@ -31,14 +35,14 @@ echo "--enable-pulse" >> mpv_options
 echo "--enable-libmpv-shared" >> mpv_options
 echo "--lua=luajit" >> mpv_options
 echo "--enable-lua" >> mpv_options
-echo "--enable-wayland" >> mpv_options
-echo "--enable-wayland-protocols" >> mpv_options
-echo "--enable-wayland-scanner" >> mpv_options
-echo "--enable-vaapi-wayland" >> mpv_options
-echo "--enable-gl-wayland" >> mpv_options
+if [ "$WAYLAND_SUPPORT" = true ]; then
+    echo "--enable-wayland" >> mpv_options
+    echo "--enable-wayland-protocols" >> mpv_options
+    echo "--enable-wayland-scanner" >> mpv_options
+    echo "--enable-vaapi-wayland" >> mpv_options
+    echo "--enable-gl-wayland" >> mpv_options
+fi
 echo "--enable-libmpv-shared" >> mpv_options
-#echo "--enable-egl-x11" >> mpv_options
-echo "--enable-vaapi-x11" >> mpv_options
 echo "--enable-vaapi-x11" >> mpv_options
 
 #echo "--enable-vaapi-x-egl" >> mpv_options
