@@ -5,7 +5,12 @@
 # System wide configuration
 
 # Dependencies
-sudo apt install pandoc --no-install-recommends
+sudo apt install git make pandoc python3 --no-install-recommends
+
+if [ ! -f /usr/bin/python ]; then
+	echo "Creating symlink from '/usr/bin/python3' to '/usr/bin/python'"
+	sudo ln -s /usr/bin/python3 /usr/bin/python
+fi
 
 DIR="$HOME/build/"
 WORKFOLDER="yt-dlc"
